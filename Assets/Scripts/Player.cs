@@ -7,7 +7,11 @@ public class Player : MonoBehaviour
     public float maxSpeed = 4;
     public float jumpForce = 400;
     public float minHeight, maxHeight;
+    public int maxHealth = 10;
+    public string playerName;
+    public Sprite playerImage;
 
+    private int currentHealth;
     private float currentSpeed;
     private Rigidbody rb;
     private Animator anim;
@@ -23,6 +27,7 @@ public class Player : MonoBehaviour
         anim = GetComponent<Animator>();
         groundCheck = gameObject.transform.Find("GroundCheck");
         currentSpeed = maxSpeed;
+        currentHealth = maxHealth;
     }
 
     // Update is called once per frame
@@ -96,5 +101,13 @@ public class Player : MonoBehaviour
 
     void ResetSpeed(){
         currentSpeed = maxSpeed;
+    }
+
+    public void TooKDamage(int damage){
+        if (!isDead){
+            currentHealth -= damage;
+            anim.SetTrigger("HitDamage");
+            FindObjectOfType<UIManager>().UpdateHealth(currentHealth);
+        }
     }
 }
