@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,13 +5,10 @@ public class UIManager : MonoBehaviour
 {
     public Slider healthUI;
     public Image playerImage;
-    public Text playerName;
-    public Text livesText;
 
     public GameObject enemyUI;
     public Slider enemySlider;
     public Image enemyImage;
-    public Text enemyName;
 
     public float enemyUITime = 4f;
 
@@ -26,7 +21,6 @@ public class UIManager : MonoBehaviour
         player = FindObjectOfType<Player>();
         healthUI.maxValue = player.maxHealth;
         healthUI.value = healthUI.maxValue;
-        playerName.text = player.playerName;
         playerImage.sprite = player.playerImage;
     }
 
@@ -44,10 +38,9 @@ public class UIManager : MonoBehaviour
         healthUI.value = amount;
     }
 
-    public void UpdateEnemyUI(int maxHealth, int currentHealth, string name, Sprite image){
+    public void UpdateEnemyUI(int maxHealth, int currentHealth, Sprite image){
         enemySlider.maxValue = maxHealth;
         enemySlider.value = currentHealth;
-        enemyName.text = name;
         enemyImage.sprite = image;
         enemyTimer = 0;
 
