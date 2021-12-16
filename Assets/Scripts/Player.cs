@@ -28,16 +28,23 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         onGround = Physics.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
         anim.SetBool("OnGround", onGround);
-        anim.SetBool("Dead", isDead);
+        //anim.SetBool("Dead", isDead);
 
         if (Input.GetButtonDown("Jump") && onGround){
             jump = true;
         }
         if (Input.GetButtonDown("Fire1")){
             anim.SetTrigger("Attack");
+        }
+        if (Input.GetKeyDown(KeyCode.Z)) {
+            currentSpeed += 1;
+        }
+        if (Input.GetKeyUp(KeyCode.Z)) {
+            currentSpeed = maxSpeed;
         }
     }
 
@@ -72,7 +79,7 @@ public class Player : MonoBehaviour
             float maxWidth = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 10)).x;
             rb.position = new Vector3(Mathf.Clamp(rb.position.x, minWidth + 1, maxWidth - 1),
                 rb.position.y,
-                Mathf.Clamp(rb.position.z, minHeight + 1, maxHeight - 1));
+                Mathf.Clamp(rb.position.z, minHeight, maxHeight));
         }
     }
 
