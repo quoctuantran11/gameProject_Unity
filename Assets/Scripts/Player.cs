@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     private bool isDead = false;
     private bool facingRight = true;
     private bool jump = false;
+    private bool isRun = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -42,14 +43,20 @@ public class Player : MonoBehaviour
         if (Input.GetButtonDown("Jump") && onGround){
             jump = true;
         }
-        if (Input.GetButtonDown("Fire1")){
+        if (Input.GetKeyDown(KeyCode.J)){
             anim.SetTrigger("Attack");
         }
         if (Input.GetKeyDown(KeyCode.Z)) {
-            currentSpeed += 1;
-        }
-        if (Input.GetKeyUp(KeyCode.Z)) {
-            currentSpeed = maxSpeed;
+            if(isRun == false)
+            {
+                isRun = true;
+                currentSpeed += 1;
+            }
+            else
+            {
+                isRun = false;
+                currentSpeed = maxSpeed;
+            }
         }
     }
 
