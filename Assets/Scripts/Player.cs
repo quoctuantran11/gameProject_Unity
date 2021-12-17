@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : MonoBehaviour
@@ -106,8 +104,8 @@ public class Player : MonoBehaviour
     public void TooKDamage(int damage){
         if (!isDead){
             currentHealth -= damage;
-            anim.SetTrigger("HitDamage");
-            FindObjectOfType<UIManager>().UpdateHealth(currentHealth);
+            anim.SetTrigger("Hurt");
+            UIManager.instance.UpdateHealth(currentHealth);
         }
     }
 }

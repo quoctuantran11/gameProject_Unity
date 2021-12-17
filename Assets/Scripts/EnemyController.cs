@@ -114,8 +114,7 @@ public class EnemyController : MonoBehaviour
         currentHealth -= damage;
 
         animator.SetTrigger("Get Hurt");
-        FindObjectOfType<UIManager>().UpdateEnemyUI(maxHealth, currentHealth, thumbnailSprite);
-
+        UIManager.instance.UpdateEnemyUI(maxHealth, currentHealth, thumbnailSprite);
         if (currentHealth <= 0)
         {
             Die();
@@ -125,7 +124,7 @@ public class EnemyController : MonoBehaviour
     void Die()
     {
         animator.SetBool("IsAlive", false);
-        rb.AddRelativeForce(new Vector2(3, 5), ForceMode.Impulse);
+        rb.AddRelativeForce(new Vector2(3, 5), ForceMode.Impulse); // ragdoll
 
         GetComponent<Collider2D>().enabled = false;
 
