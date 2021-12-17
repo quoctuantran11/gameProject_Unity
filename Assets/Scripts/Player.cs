@@ -113,7 +113,7 @@ public class Player : MonoBehaviour
     public void TooKDamage(int damage){
         if (!isDead){
             currentHealth -= damage;
-            anim.SetTrigger("HitDamage");
+            anim.SetTrigger("Hurt");
             FindObjectOfType<UIManager>().UpdateHealth(currentHealth);
         }
     }
