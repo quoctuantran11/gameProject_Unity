@@ -180,14 +180,14 @@ public class EnemyController : MonoBehaviour
         audioS.Play();
     }
 
-    private void setStats(EnemyStats enemyStats){
+    protected void setStats(EnemyStats enemyStats){
         this.maxHealth = enemyStats.maxHealth;
         this.speed = enemyStats.speed;
         this.attackRate = enemyStats.attackRate;
         this.attackDamage = enemyStats.attackDamage;
     }
 
-    private void randomEnemyType(){
+    protected void randomEnemyType(){
         int type = Random.Range(1, 6);
         switch(type){
             case 2:
