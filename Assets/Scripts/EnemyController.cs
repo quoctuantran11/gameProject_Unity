@@ -1,15 +1,16 @@
 using System.Collections;
 using UnityEngine;
+using Pathfinding;
 
 public class EnemyController : MonoBehaviour
 {
     public int maxHealth = 100;
     public int speed = 2;
     public int attackDamage = 10;
-    public float attackRange = 2f;
+    public float attackRange = 2f; // also act as distance to a waypoint in order to change waypoint
     public int attackRate = 1; // number of attacks per second
     public LayerMask targetLayerMask; // Layer of player
-    public Sprite thumbnailSprite;
+    public Sprite thumbnailSprite;    
 
     Transform player;
     Animator animator;
@@ -24,6 +25,11 @@ public class EnemyController : MonoBehaviour
     float attackCooldown = 0f;
     SpriteRenderer sprite;
 
+    Path path;
+    int currentWaypoint= 0 ;
+    bool reachedTarget = false;
+    Seeker seeker;
+
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player").transform;
@@ -33,46 +39,74 @@ public class EnemyController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         sprite = GetComponent<SpriteRenderer>();
         groundCheck = gameObject.transform.Find("GroundCheck");
+        seeker = GetComponent<Seeker>();
+
+        InvokeRepeating("UpdatePath", 0f, 0.5f);
     }
+
+
 
     void Update()
     {
         FacePlayer();
         walkTimer += Time.deltaTime;
-
-        if (Vector3.Distance(player.position, rb.position) <= attackRange && Time.time >= attackCooldown)
-        {
-            rb.velocity = Vector3.zero;
-            animator.SetTrigger("Attack"); // Attack() is called in attack animation
-        }
     }
 
     private void FixedUpdate()
     {
         if(currentHealth > 0)
         {
-            // Not a very good pathfinding script, can improve using A*
+            #region A* pathfinding
 
-            Vector3 targetDistance = player.position - transform.position; // locate player
-            if (targetDistance.magnitude > attackRange)
+            if (path == null)
+                return;
+            if(currentWaypoint >= path.vectorPath.Count)
             {
-                float hForce = targetDistance.x / Mathf.Abs(targetDistance.x);
-
-                if (walkTimer >= Random.Range(1f, 2f))
-                {
-                    zforce = Random.Range(-1, 2);
-                    walkTimer = 0;
-                }
-                if (Mathf.Abs(targetDistance.x) < 1.5f)
-                {
-                    hForce = 0;
-                }
-                rb.velocity = new Vector3(hForce * speed, 0, zforce * speed); // move toward player
-                animator.SetFloat("Speed", Mathf.Abs(speed));
+                reachedTarget = true;
+                if (Time.time >= attackCooldown)
+                    animator.SetTrigger("Attack"); // Attack() is called in attack animation
+                return;
             }
-            else animator.SetFloat("Speed", 0f);
+            else
+            {
+                reachedTarget = false;
+            }
+
+            MoveTowardPlayer();
+            #endregion
         }
     }
+
+    void OnPathComplete(Path p)
+    {
+        if (!p.error)
+        {
+            path = p;
+            currentWaypoint = 0;
+        }
+    }
+
+    private void UpdatePath()
+    {
+        if(seeker.IsDone())
+            seeker.StartPath(rb.position, player.position, OnPathComplete);
+    }
+
+    private void MoveTowardPlayer() 
+    {
+        Vector3 direction = ((Vector3)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        Vector3 force = direction * speed * Time.deltaTime * 50;
+        rb.AddForce(force);
+        animator.SetFloat("Speed", speed);
+
+        float distance = Vector3.Distance(rb.position, path.vectorPath[currentWaypoint]);
+
+        if(distance < attackRange)
+        {
+            currentWaypoint++;
+        }
+    }
+
 
     public void FacePlayer()
     {
