@@ -41,4 +41,8 @@ public class Boss : EnemyController
     {
         SceneManager.LoadScene("Menu");
     }
+
+    new protected void randomEnemyType(){
+        this.setStats(EnemyStatsManager.Instance.bossStatsAtLevel(1));
+    }
 }
