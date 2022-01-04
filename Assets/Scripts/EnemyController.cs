@@ -91,9 +91,10 @@ public class EnemyController : MonoBehaviour
             }
         }
         if (isFlipped)
-            sprite.flipX = true;
+            transform.localScale = new Vector3(-0.7f, 1, 1);
         else
-            sprite.flipX = false;
+            transform.localScale = new Vector3(0.7f, 1, 1);
+
     }
 
     public void Attack()
