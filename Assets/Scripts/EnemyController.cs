@@ -3,6 +3,9 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
+    private enum Type{
+        normal = 1, highDamage = 2, Tanking = 3, fast = 4, normalV1 = 5, normalV2 = 6
+    }
     public int maxHealth = 100;
     public float minHeight, maxHeight;
     public int speed = 2;
@@ -45,6 +48,7 @@ public class EnemyController : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         groundCheck = gameObject.transform.Find("GroundCheck");
         audioS = GetComponent<AudioSource>();
+        this.randomEnemyType();
     }
 
     void Update()
@@ -125,7 +129,7 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        attackCooldown = Time.time + 5 / attackRate;
+        attackCooldown = Time.time + 6 / attackRate - 1;
     }
 
     public void TakeDamage(int damage)
@@ -174,5 +178,30 @@ public class EnemyController : MonoBehaviour
     {
         audioS.clip = clip;
         audioS.Play();
+    }
+
+    private void setStats(EnemyStats enemyStats){
+        this.maxHealth = enemyStats.maxHealth;
+        this.speed = enemyStats.speed;
+        this.attackRate = enemyStats.attackRate;
+        this.attackDamage = enemyStats.attackDamage;
+    }
+
+    private void randomEnemyType(){
+        int type = Random.Range(1, 6);
+        switch(type){
+            case 2:
+                this.setStats(EnemyStatsManager.Instance.HighDamageEnemyStatsAtLevel(1));
+                break;
+            case 3:
+                this.setStats(EnemyStatsManager.Instance.HighHealthEnemyStatsAtLevel(1));
+                break;
+            case 4:
+                this.setStats(EnemyStatsManager.Instance.HighMobilityEnemyStatsAtLevel(1));
+                break;
+            default:
+                this.setStats(EnemyStatsManager.Instance.enemyStatsAtLevel(1));
+                break;
+        }
     }
 }
