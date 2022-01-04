@@ -5,6 +5,9 @@ public class UIManager : MonoBehaviour
 {
     public Slider healthUI;
     public Image playerImage;
+    public Text playerName;
+    public Text livesText;
+    public Text displayMessage;
 
     public GameObject enemyUI;
     public Slider enemySlider;
@@ -22,6 +25,7 @@ public class UIManager : MonoBehaviour
         healthUI.maxValue = player.maxHealth;
         healthUI.value = healthUI.maxValue;
         playerImage.sprite = player.playerImage;
+        UpdateLives();
     }
 
     // Update is called once per frame
@@ -47,4 +51,13 @@ public class UIManager : MonoBehaviour
         enemyUI.SetActive(true);
     }
 
+    public void UpdateLives()
+    {
+        livesText.text = "x " + FindObjectOfType<GameManager>().lives.ToString();
+    }
+
+    public void UpdateDisplayMessage(string msg)
+    {
+        displayMessage.text = msg;
+    }
 }

@@ -1,0 +1,33 @@
+{
+    "name": "inputActions",
+    "maps": [
+        {
+            "name": "Camera",
+            "id": "75ca1b1f-f821-4d0e-9417-93998fe0506e",
+            "actions": [
+                {
+                    "name": "Pause",
+                    "type": "Button",
+                    "id": "8204c0c7-2a52-4953-a227-66aedc3dbb01",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "0c6b2fb2-66c1-48a5-8304-c4903b6264c9",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pause",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

@@ -4,25 +4,36 @@ using UnityEngine;
 public class EnemyController : MonoBehaviour
 {
     public int maxHealth = 100;
+    public float minHeight, maxHeight;
     public int speed = 2;
     public int attackDamage = 10;
     public float attackRange = 2f;
     public int attackRate = 1; // number of attacks per second
     public LayerMask targetLayerMask; // Layer of player
     public Sprite thumbnailSprite;
+    public AudioClip collisionSound, knockSound;
 
     Transform player;
-    Animator animator;
+    protected Animator animator;
     Rigidbody rb;
     Transform groundCheck;
     bool onGround;
         
     int currentHealth;
-    bool isFlipped = false;
+    protected bool isFlipped = false;
     float zforce;
     float walkTimer;
     float attackCooldown = 0f;
     SpriteRenderer sprite;
+    private AudioSource audioS;
+    public int health
+    {
+        get { return currentHealth; }
+        set
+        {
+            currentHealth = value;
+        }
+    }
 
     void Start()
     {
@@ -33,6 +44,7 @@ public class EnemyController : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         sprite = GetComponent<SpriteRenderer>();
         groundCheck = gameObject.transform.Find("GroundCheck");
+        audioS = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -71,6 +83,12 @@ public class EnemyController : MonoBehaviour
                 animator.SetFloat("Speed", Mathf.Abs(speed));
             }
             else animator.SetFloat("Speed", 0f);
+
+            float minWidth = Camera.main.ScreenToWorldPoint(new Vector3(0,0,10)).x;
+            float maxWidth = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 10)).x;
+            rb.position = new Vector3(Mathf.Clamp(rb.position.x, minWidth + 1, maxWidth - 1),
+                rb.position.y,
+                Mathf.Clamp(rb.position.z, minHeight, maxHeight));
         }
     }
 
@@ -107,7 +125,7 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        attackCooldown = Time.time + 1 / attackRate;
+        attackCooldown = Time.time + 5 / attackRate;
     }
 
     public void TakeDamage(int damage)
@@ -115,6 +133,7 @@ public class EnemyController : MonoBehaviour
         currentHealth -= damage;
 
         animator.SetTrigger("Get Hurt");
+        PlaySong(collisionSound);
         FindObjectOfType<UIManager>().UpdateEnemyUI(maxHealth, currentHealth, thumbnailSprite);
 
         if (currentHealth <= 0)
@@ -126,12 +145,15 @@ public class EnemyController : MonoBehaviour
     void Die()
     {
         animator.SetBool("IsAlive", false);
-        rb.AddRelativeForce(new Vector2(3, 5), ForceMode.Impulse);
+        animator.SetTrigger("Knock Down");
+        rb.AddRelativeForce(new Vector3(3, 5, 0), ForceMode.Impulse);
 
-        GetComponent<Collider2D>().enabled = false;
+        PlaySong(knockSound);
+    }
 
-        StartCoroutine(Blink());
-        this.enabled = false;
+    public void DisableEnemy()
+    {
+        gameObject.SetActive(false);
     }
 
     // corpses blink before disappear
@@ -146,5 +168,11 @@ public class EnemyController : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         playerSprite.color = defaultColor;
+    }
+
+    public void PlaySong(AudioClip clip)
+    {
+        audioS.clip = clip;
+        audioS.Play();
     }
 }

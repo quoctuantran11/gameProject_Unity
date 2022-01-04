@@ -6,11 +6,14 @@ using UnityEngine.UI;
 public class BlinkingImg : MonoBehaviour
 {
     Image image;
+    public AudioClip startSound;
+    private AudioSource audioS;
     // Start is called before the first frame update
     void Start()
     {
         image = GetComponent<Image>();
         StartBlinking();
+        audioS = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
@@ -35,6 +38,16 @@ public class BlinkingImg : MonoBehaviour
                     break;    
             }
         }
+    }
+
+    void OnMouseEnter() {
+        PlaySong(startSound);
+    }
+
+    public void PlaySong(AudioClip clip)
+    {
+        audioS.clip = clip;
+        audioS.Play();
     }
 
     void StartBlinking()

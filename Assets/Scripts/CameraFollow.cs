@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class CameraFollow : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class CameraFollow : MonoBehaviour
     public Vector2 minXAndY;
 
     private Transform m_Player;
+    CameraInputActions inputActions;
+    //Show pause menu
+    public GameObject pauseMenu;
 
     private void Awake()
     {
@@ -24,7 +28,9 @@ public class CameraFollow : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        inputActions = new CameraInputActions();
+        inputActions.Camera.Enable();
+        inputActions.Camera.Pause.performed += OnPauseGame;
     }
 
     // Update is called once per frame
@@ -47,5 +53,15 @@ public class CameraFollow : MonoBehaviour
         //targetY = Mathf.Clamp(targetY, minXAndY.y, maxXAndY.y);
 
         transform.position = new Vector3(targetX, transform.position.y, transform.position.z);
+    }
+
+    public void OnPauseGame(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            MyGameManager.Instance.PauseGame();
+            //Show pause menu
+            pauseMenu.SetActive(true);
+        }
     }
 }
