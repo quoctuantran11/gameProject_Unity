@@ -151,7 +151,7 @@ MonoBehaviour:
   attackDamage: 20
   attackRange: 2
   attackRate: 2
-  attackOffset: {x: 0, y: 0}
   targetLayerMask:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
+  thumbnailSprite: {fileID: 0}
