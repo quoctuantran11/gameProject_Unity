@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
+    public static UIManager instance { get; private set; }
     public Slider healthUI;
     public Image playerImage;
     public Text playerName;
@@ -17,6 +18,11 @@ public class UIManager : MonoBehaviour
 
     private float enemyTimer;
     private Player player;
+
+    private void Awake()
+    {
+        instance = this;
+    }
 
     // Start is called before the first frame update
     void Start()

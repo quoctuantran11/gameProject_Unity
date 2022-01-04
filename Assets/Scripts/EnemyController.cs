@@ -134,8 +134,8 @@ public class EnemyController : MonoBehaviour
 
         animator.SetTrigger("Get Hurt");
         PlaySong(collisionSound);
-        FindObjectOfType<UIManager>().UpdateEnemyUI(maxHealth, currentHealth, thumbnailSprite);
 
+        UIManager.instance.UpdateEnemyUI(maxHealth, currentHealth, thumbnailSprite);
         if (currentHealth <= 0)
         {
             Die();
@@ -146,7 +146,7 @@ public class EnemyController : MonoBehaviour
     {
         animator.SetBool("IsAlive", false);
         animator.SetTrigger("Knock Down");
-        rb.AddRelativeForce(new Vector3(3, 5, 0), ForceMode.Impulse);
+        rb.AddRelativeForce(new Vector2(3, 5), ForceMode.Impulse); // ragdoll
 
         PlaySong(knockSound);
     }
