@@ -32,6 +32,7 @@ public class EnemyController : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         sprite = GetComponent<SpriteRenderer>();
+        groundCheck = gameObject.transform.Find("GroundCheck");
     }
 
     void Update()

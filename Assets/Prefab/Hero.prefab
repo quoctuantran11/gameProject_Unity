@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 787643678537016085}
   - component: {fileID: 787643678537016084}
   - component: {fileID: 787643678537016082}
-  - component: {fileID: 787643678537016086}
   - component: {fileID: 787643678537016087}
   - component: {fileID: 787643678537016083}
+  - component: {fileID: 6565154009163224698}
   m_Layer: 0
   m_Name: Hero
   m_TagString: Player
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 787643678537016081}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -5.56, y: -0.99, z: 0}
-  m_LocalScale: {x: 0.73463684, y: 0.8546459, z: 1}
+  m_LocalScale: {x: 0.2704899, y: 0.39231485, z: 1}
   m_Children:
   - {fileID: 787643679879516243}
   - {fileID: 787643678756311442}
@@ -76,7 +76,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: feeea95cf18b9483fa105614af561549, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -98,7 +98,7 @@ Animator:
   m_GameObject: {fileID: 787643678537016081}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: f91d570d603db1344a7dbc9c8a9625dd, type: 2}
+  m_Controller: {fileID: 9100000, guid: 64d04bc342d5a494385a5ff941fa1f08, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -107,22 +107,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &787643678537016086
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 787643678537016081}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9450985a519e2e4419eccd52c443ab40, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 2
-  jumpForce: 400
-  minHeight: -4
-  maxHeight: 4
 --- !u!54 &787643678537016087
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -153,6 +137,25 @@ CapsuleCollider:
   m_Height: 2.6678596
   m_Direction: 1
   m_Center: {x: -0.023954576, y: 1.2692461, z: 0}
+--- !u!114 &6565154009163224698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 787643678537016081}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 717ce24ec5c9ea44196474fe0fc826d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 2
+  jumpForce: 400
+  minHeight: -8
+  maxHeight: -2
+  maxHealth: 10
+  playerName: 
+  playerImage: {fileID: 0}
 --- !u!1 &787643678756311441
 GameObject:
   m_ObjectHideFlags: 0
