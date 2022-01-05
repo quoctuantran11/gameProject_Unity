@@ -13,7 +13,7 @@ public class Player : MonoBehaviour
     public Sprite playerImage;
     public int attackDamage = 10;
     public float attackRange = 2f;
-    public int attackRate = 1;
+    public float attackRate = 1f;
     public AudioClip collisionSound, pushSound, jumpSound;
 
     public LayerMask targetLayerMask; // Layer of player
