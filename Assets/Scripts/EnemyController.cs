@@ -129,7 +129,7 @@ public class EnemyController : MonoBehaviour
             }
         }
 
-        attackCooldown = Time.time + 6 / attackRate - 1;
+        attackCooldown = Time.time + 6 / attackRate - 0.5f;
     }
 
     public void TakeDamage(int damage)

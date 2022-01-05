@@ -44,17 +44,17 @@ public class EnemyStatsManager
 
     public EnemyStats HighDamageEnemyStatsAtLevel(int level){
         EnemyStats baseEnemyStats = this.enemyStatsAtLevel(level);
-        return new EnemyStats(baseEnemyStats.maxHealth - 30, baseEnemyStats.speed, baseEnemyStats.attackDamage + 4, baseEnemyStats.attackRate);
+        return new EnemyStats(baseEnemyStats.maxHealth - 30, baseEnemyStats.speed, baseEnemyStats.attackDamage + 4, baseEnemyStats.attackRate + 1);
     }
 
     public EnemyStats HighHealthEnemyStatsAtLevel(int level){
         EnemyStats baseEnemyStats = this.enemyStatsAtLevel(level);
-        return new EnemyStats(baseEnemyStats.maxHealth + 40, baseEnemyStats.speed - 1, baseEnemyStats.attackDamage - 3, baseEnemyStats.attackRate);
+        return new EnemyStats(baseEnemyStats.maxHealth + 50, baseEnemyStats.speed - 1, baseEnemyStats.attackDamage - 2, baseEnemyStats.attackRate);
     }
 
     public EnemyStats HighMobilityEnemyStatsAtLevel(int level){
         EnemyStats baseEnemyStats = this.enemyStatsAtLevel(level);
-        return new EnemyStats(baseEnemyStats.maxHealth - 40, baseEnemyStats.speed + 2, baseEnemyStats.attackDamage - 3, baseEnemyStats.attackRate);
+        return new EnemyStats(baseEnemyStats.maxHealth - 40, baseEnemyStats.speed + 2, baseEnemyStats.attackDamage - 3, baseEnemyStats.attackRate + 1);
     }
 
     public EnemyStats bossStatsAtLevel(int level){
