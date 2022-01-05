@@ -12,7 +12,7 @@ public class Player : MonoBehaviour
     public string playerName;
     public Sprite playerImage;
     public int attackDamage = 10;
-    public float attackRange = 2f;
+    public float attackRange = 4f;
     public float attackRate = 1f;
     public AudioClip collisionSound, pushSound, jumpSound;
 
@@ -158,7 +158,7 @@ public class Player : MonoBehaviour
         {
             currentHealth -= damage;
             anim.SetTrigger("Hurt");
-            FindObjectOfType<UIManager>().UpdateHealth(currentHealth);
+            FindObjectOfType<UIManager>().UpdateHealth(currentHealth * 100 / maxHealth);
             PlaySong(collisionSound);
 
             if (currentHealth <= 0)
@@ -175,7 +175,6 @@ public class Player : MonoBehaviour
                     rb.AddForce(new Vector3(3, 5, 0), ForceMode.Impulse);
                 }
             }
-            Debug.Log(this.currentHealth);
         }
     }
 
@@ -188,7 +187,7 @@ public class Player : MonoBehaviour
                 isKnock = true;
                 currentHealth -= damage;
                 anim.SetTrigger("Knockout");
-                FindObjectOfType<UIManager>().UpdateHealth(currentHealth);
+                FindObjectOfType<UIManager>().UpdateHealth(currentHealth * 100 / maxHealth);
             }
         }
     }
@@ -213,7 +212,7 @@ public class Player : MonoBehaviour
             }
         }
 
-        attackCooldown = Time.time + 1 / attackRate;
+        attackCooldown = Time.time + (float)(1 / attackRate);
     }
 
     public void PlaySong(AudioClip clip)
@@ -234,7 +233,7 @@ public class Player : MonoBehaviour
             isDead = false;
             FindObjectOfType<UIManager>().UpdateLives();
             currentHealth = maxHealth;
-            FindObjectOfType<UIManager>().UpdateHealth(currentHealth);
+            FindObjectOfType<UIManager>().UpdateHealth(currentHealth * 100 / maxHealth);
             anim.Rebind();
             float minWidth = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 10)).x;
             transform.position = new Vector3(minWidth, 10, -4);
@@ -253,8 +252,8 @@ public class Player : MonoBehaviour
     }
 
     private void initPlayerStats(){
-        PlayerStatsManager statsManager = new PlayerStatsManager(3);
-        PlayerStats stats = statsManager.playerStatsAtLevel(4);
+        PlayerStatsManager statsManager = new PlayerStatsManager(2);
+        PlayerStats stats = statsManager.playerStatsAtLevel(1);
         this.maxHealth = stats.maxHealth;
         this.currentSpeed = stats.speed;
         this.maxSpeed = stats.maxSpeed;

@@ -26,7 +26,7 @@ public class EnemyController : MonoBehaviour
     protected bool isFlipped = false;
     float zforce;
     float walkTimer;
-    float attackCooldown = 0f;
+    float attackCooldown;
     SpriteRenderer sprite;
     private AudioSource audioS;
     public int health
@@ -40,6 +40,7 @@ public class EnemyController : MonoBehaviour
 
     void Start()
     {
+        this.attackCooldown = 0f;
         player = GameObject.FindGameObjectWithTag("Player").transform;
         targetLayerMask = LayerMask.GetMask("Hero");
         currentHealth = maxHealth;
@@ -48,7 +49,7 @@ public class EnemyController : MonoBehaviour
         sprite = GetComponent<SpriteRenderer>();
         groundCheck = gameObject.transform.Find("GroundCheck");
         audioS = GetComponent<AudioSource>();
-        this.randomEnemyType();
+        randomEnemyType();
     }
 
     void Update()
@@ -58,8 +59,11 @@ public class EnemyController : MonoBehaviour
 
         if (Vector3.Distance(player.position, rb.position) <= attackRange && Time.time >= attackCooldown)
         {
-            rb.velocity = Vector3.zero;
-            animator.SetTrigger("Attack"); // Attack() is called in attack animation
+            if (FindObjectOfType<Player>().health > 0){
+                rb.velocity = Vector3.zero;
+                animator.SetTrigger("Attack"); // Attack() is called in attack animation
+                attackCooldown = Time.time + (float)(6.0f / (attackRate * 1.0f)) - 0.5f;
+            }
         }
     }
 
@@ -128,8 +132,6 @@ public class EnemyController : MonoBehaviour
                 hero.GetComponent<Player>().TooKDamage(attackDamage);
             }
         }
-
-        attackCooldown = Time.time + 6 / attackRate - 0.5f;
     }
 
     public void TakeDamage(int damage)
@@ -187,7 +189,7 @@ public class EnemyController : MonoBehaviour
         this.attackDamage = enemyStats.attackDamage;
     }
 
-    protected void randomEnemyType(){
+    public virtual void randomEnemyType(){
         int type = Random.Range(1, 6);
         switch(type){
             case 2:

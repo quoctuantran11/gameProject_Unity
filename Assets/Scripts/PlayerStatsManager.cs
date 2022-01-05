@@ -39,10 +39,10 @@ public class PlayerStatsManager
         this.baseSpeed = 3;
         this.baseMaxSpeed = 5;
         this.speedIncrease = 1;
-        this.baseAttackDamage = 10;
-        this.attackDamageIncrease = 2;
+        this.baseAttackDamage = 15;
+        this.attackDamageIncrease = 4;
         this.baseAttackRate = 1f;
-        this.attackRateIncrease = 0.05f;
+        this.attackRateIncrease = 0.1f;
         this.speedUpgradePeriod = 3;
     }
 
@@ -52,10 +52,10 @@ public class PlayerStatsManager
         this.baseSpeed = 4;
         this.baseMaxSpeed = 6;
         this.speedIncrease = 1;
-        this.baseAttackDamage = 12;
-        this.attackDamageIncrease = 3;
+        this.baseAttackDamage = 20;
+        this.attackDamageIncrease = 8;
         this.baseAttackRate = 1.1f;
-        this.attackRateIncrease = 0.1f;
+        this.attackRateIncrease = 0.2f;
         this.speedUpgradePeriod = 3;
     }
 
@@ -65,10 +65,10 @@ public class PlayerStatsManager
         this.baseSpeed = 2;
         this.baseMaxSpeed = 4;
         this.speedIncrease = 1;
-        this.baseAttackDamage = 10;
-        this.attackDamageIncrease = 2;
+        this.baseAttackDamage = 15;
+        this.attackDamageIncrease = 4;
         this.baseAttackRate = 1f;
-        this.attackRateIncrease = 0.05f;
+        this.attackRateIncrease = 0.1f;
         this.speedUpgradePeriod = 3;
     }
 
