@@ -54,7 +54,7 @@ public class PlayerStatsManager
         this.speedIncrease = 1;
         this.baseAttackDamage = 12;
         this.attackDamageIncrease = 3;
-        this.baseAttackRate = 1.2f;
+        this.baseAttackRate = 1.1f;
         this.attackRateIncrease = 0.1f;
         this.speedUpgradePeriod = 3;
     }

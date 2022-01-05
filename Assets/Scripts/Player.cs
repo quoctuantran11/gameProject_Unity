@@ -46,7 +46,8 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         groundCheck = gameObject.transform.Find("GroundCheck");
-        currentSpeed = 3;
+        // currentSpeed = 3;
+        this.initPlayerStats();
         currentHealth = maxHealth;
         audioS = GetComponent<AudioSource>();
     }
@@ -174,6 +175,7 @@ public class Player : MonoBehaviour
                     rb.AddForce(new Vector3(3, 5, 0), ForceMode.Impulse);
                 }
             }
+            Debug.Log(this.currentHealth);
         }
     }
 
@@ -248,5 +250,15 @@ public class Player : MonoBehaviour
     void LoadScene()
     {
         SceneManager.LoadScene("Menu");
+    }
+
+    private void initPlayerStats(){
+        PlayerStatsManager statsManager = new PlayerStatsManager(3);
+        PlayerStats stats = statsManager.playerStatsAtLevel(4);
+        this.maxHealth = stats.maxHealth;
+        this.currentSpeed = stats.speed;
+        this.maxSpeed = stats.maxSpeed;
+        this.attackDamage = stats.attackDamage;
+        this.attackRate = stats.attackRate;
     }
 }
