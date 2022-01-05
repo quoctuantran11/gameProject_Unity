@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: 4528960549234368800}
   - component: {fileID: 9028825228297307186}
   - component: {fileID: 7244015332288014188}
-  - component: {fileID: 2237305315028077657}
   - component: {fileID: 6288344439376967930}
+  - component: {fileID: 2276159004297742403}
   m_Layer: 7
   m_Name: Boss
   m_TagString: Untagged
@@ -135,31 +135,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &2237305315028077657
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4528960549234368805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3f0bf249a6af204585581ec4afbfc3f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 500
-  minHeight: 0
-  maxHeight: 0
-  speed: 2
-  attackDamage: 20
-  attackRange: 2
-  attackRate: 2
-  targetLayerMask:
-    serializedVersion: 2
-    m_Bits: 64
-  thumbnailSprite: {fileID: 21300000, guid: 8f6c4a05eeaff7b4eb287089c14bd3e3, type: 3}
-  collisionSound: {fileID: 8300000, guid: abbe01a50746a4646bb97ac9966ccd16, type: 3}
-  knockSound: {fileID: 8300000, guid: 07bca02f9354c5340ac615518af93568, type: 3}
 --- !u!82 &6288344439376967930
 AudioSource:
   m_ObjectHideFlags: 0
@@ -256,3 +231,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &2276159004297742403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4528960549234368805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3674dc91ec85734ea4823787803a173, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  minHeight: 0
+  maxHeight: 0
+  speed: 2
+  attackDamage: 10
+  attackRange: 2
+  attackRate: 1
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 64
+  thumbnailSprite: {fileID: 21300000, guid: 8f6c4a05eeaff7b4eb287089c14bd3e3, type: 3}
+  collisionSound: {fileID: 8300000, guid: abbe01a50746a4646bb97ac9966ccd16, type: 3}
+  knockSound: {fileID: 8300000, guid: 07bca02f9354c5340ac615518af93568, type: 3}
+  boomerang: {fileID: 5789865896035401674, guid: f1421ebbd6b86be4d930d631a8289d2e, type: 3}
+  minTime: 0
+  maxTime: 0
