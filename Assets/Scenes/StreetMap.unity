@@ -224,7 +224,7 @@ MonoBehaviour:
   ySmooth: 8
   maxXAndY: {x: 200, y: 0}
   minXAndY: {x: 0, y: 0}
-  pauseMenu: {fileID: 0}
+  pauseMenu: {fileID: 1294368028}
 --- !u!1 &191917895
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,6 +288,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &205058683 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5145179114380329959, guid: 73484d71addb1b1469017b06dbbc12dd, type: 3}
+  m_PrefabInstance: {fileID: 5145179114492486769}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &225180140
 GameObject:
   m_ObjectHideFlags: 0
@@ -811,8 +816,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7125d7f9db1a2464eacc77fb127ca5f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  introSong: {fileID: 0}
-  levelSong: {fileID: 8300000, guid: 07824598ebff97e4e8c22478e518b9d6, type: 3}
+  pickedSong: {fileID: 8300000, guid: 07824598ebff97e4e8c22478e518b9d6, type: 3}
   bossSong: {fileID: 8300000, guid: 6eabe61c681b23545b3cd5e1e683dd78, type: 3}
   levelClearSong: {fileID: 8300000, guid: 32cc3846bb3e3704787a72c0f6ef048e, type: 3}
 --- !u!4 &1044024999
@@ -1146,6 +1150,11 @@ PrefabInstance:
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1617267265497456623, guid: 78a9b65ad5a0e054caa6f3a1a286a089, type: 3}
   m_PrefabInstance: {fileID: 1108061793}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1294368028 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4068363995432314397, guid: 37579f305cb22a145ac0c5939f468f36, type: 3}
+  m_PrefabInstance: {fileID: 2815301985202572328}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1486599085
 GameObject:
@@ -1628,9 +1637,25 @@ PrefabInstance:
       propertyPath: Cam
       value: 
       objectReference: {fileID: 161940300}
+    - target: {fileID: 4068363995432314371, guid: 37579f305cb22a145ac0c5939f468f36, type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 7251717505821529306, guid: af4475326de94f44e8bf77daf09a1eb6, type: 3}
+    - target: {fileID: 4068363995432314371, guid: 37579f305cb22a145ac0c5939f468f36, type: 3}
+      propertyPath: enemy
+      value: 
+      objectReference: {fileID: 8670721700846683509, guid: 3feafff0056306042a8e6537f5e4f5aa, type: 3}
+    - target: {fileID: 4068363995432314371, guid: 37579f305cb22a145ac0c5939f468f36, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 205058683}
     - target: {fileID: 4068363995432314397, guid: 37579f305cb22a145ac0c5939f468f36, type: 3}
       propertyPath: m_Name
       value: PauseMenu2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4068363995432314397, guid: 37579f305cb22a145ac0c5939f468f36, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37579f305cb22a145ac0c5939f468f36, type: 3}

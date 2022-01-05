@@ -7,8 +7,8 @@ using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour
 {
-    public GameObject maps, spaceLevels, optionsMenu, Cam, player, boss, spawn, enemy;
-    bool space, street;
+    public GameObject maps, modes, spaceLevels, streetLevels, optionsMenu, Cam;
+    bool space, street, option;
     // Start is called before the first frame update
     void Start()
     {
@@ -24,6 +24,7 @@ public class MainMenu : MonoBehaviour
     public void ShowMap()
     {
         maps.SetActive(true);
+        modes.SetActive(true);
         optionsMenu.SetActive(false);
     }
 
@@ -33,15 +34,21 @@ public class MainMenu : MonoBehaviour
         space = true;
     }
 
-    public void PlayGame()
+    public void ShowStreetLevels()
     {
-        SceneManager.LoadScene("SpaceMap");
+        streetLevels.SetActive(true);
+        street = true;
+    }
+
+    public void PlayGame(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 
     public void ShowOptionMenu()
     {
         optionsMenu.SetActive(true);
-        maps.SetActive(false);
+        option = true;
     }
 
     public void QuitGame()
@@ -63,20 +70,9 @@ public class MainMenu : MonoBehaviour
 
     public void LoadMainMenu()
     {
-        optionsMenu.SetActive(false);
+        //optionsMenu.SetActive(false);
         MyGameManager.Instance.LoadMainMenu();
         SceneManager.LoadScene("Menu");
-    }
-
-    public void SaveGame()
-    {
-        MyGameManager.Instance.SaveGame(player, spawn, enemy, boss);
-    }
-
-    public void LoadGame()
-    {
-        MyGameManager.Instance.isNewGame = false;
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public void Back()
@@ -84,8 +80,21 @@ public class MainMenu : MonoBehaviour
         if(space)
         {
             spaceLevels.SetActive(false);
+            space = false;
+            maps.SetActive(true);
         }
-        
-        maps.SetActive(true);
+
+        if(street)
+        {
+            streetLevels.SetActive(false);
+            street = false;
+            maps.SetActive(true);
+        }
+
+        if(option)
+        {
+            optionsMenu.SetActive(false);
+            option = false;
+        }
     }
 }

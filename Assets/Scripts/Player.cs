@@ -31,7 +31,6 @@ public class Player : MonoBehaviour
     private bool jump = false;
     private bool isRun = false;
     private AudioSource audioS;
-    private MusicController music;
     public int health
     {
         get { return currentHealth; }
@@ -50,8 +49,6 @@ public class Player : MonoBehaviour
         currentSpeed = 3;
         currentHealth = maxHealth;
         audioS = GetComponent<AudioSource>();
-        music = FindObjectOfType<MusicController>();
-        music.PlaySong(music.levelSong);
     }
 
     // Update is called once per frame

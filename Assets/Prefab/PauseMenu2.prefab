@@ -322,11 +322,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maps: {fileID: 0}
   spaceLevels: {fileID: 0}
+  streetLevels: {fileID: 0}
   optionsMenu: {fileID: 0}
-  saveOptions: {fileID: 0}
-  loadOptions: {fileID: 0}
   Cam: {fileID: 0}
   player: {fileID: 0}
+  boss: {fileID: 0}
+  spawn: {fileID: 0}
+  enemy: {fileID: 0}
 --- !u!1 &4068363995732899290
 GameObject:
   m_ObjectHideFlags: 0
