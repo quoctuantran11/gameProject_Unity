@@ -10,7 +10,9 @@ public class Boss : EnemyController
     private MusicController music;
 
     void Awake() {
-        Invoke("ThrowBoomerang", Random.Range(minTime, maxTime));
+        if(name == "Boss2")
+            Invoke("ThrowBoomerang", Random.Range(minTime, maxTime));
+
         music = FindObjectOfType<MusicController>();
         music.PlaySong(music.bossSong);
     }
