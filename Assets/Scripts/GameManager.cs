@@ -5,6 +5,18 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public int lives;
+    public int defaultLevel = 1;
+
+    int playerType;
+
+    public int getType
+    {
+        get {return playerType; }
+        set
+        {
+            playerType = value;
+        }
+    }
 
     private GameManager gameManager;
     void Awake()
@@ -19,6 +31,11 @@ public class GameManager : MonoBehaviour
         }
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    void Start()
+    {
+        this.defaultLevel = PlayerPrefs.GetInt("level");
     }
 
     // Update is called once per frame

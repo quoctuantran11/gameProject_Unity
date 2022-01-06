@@ -405,6 +405,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 4
+  defaultLevel: 1
 --- !u!4 &927153937
 Transform:
   m_ObjectHideFlags: 0
@@ -1717,6 +1718,10 @@ PrefabInstance:
     - target: {fileID: 5145179114380329962, guid: 73484d71addb1b1469017b06dbbc12dd, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5145179114380329965, guid: 73484d71addb1b1469017b06dbbc12dd, type: 3}
+      propertyPath: statType
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 5145179114380329965, guid: 73484d71addb1b1469017b06dbbc12dd, type: 3}
       propertyPath: maxHealth

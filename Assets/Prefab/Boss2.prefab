@@ -43,8 +43,8 @@ GameObject:
   - component: {fileID: 7251717505821529304}
   - component: {fileID: 7251717505821529307}
   - component: {fileID: 7251717505821529308}
-  - component: {fileID: 7251717505821529311}
   - component: {fileID: 7251717505821529309}
+  - component: {fileID: 5804313290817953255}
   m_Layer: 7
   m_Name: Boss2
   m_TagString: Untagged
@@ -166,34 +166,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
---- !u!114 &7251717505821529311
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7251717505821529306}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3674dc91ec85734ea4823787803a173, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 100
-  minHeight: -2
-  maxHeight: 2
-  speed: 2
-  attackDamage: 10
-  attackRange: 2
-  attackRate: 1
-  targetLayerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  thumbnailSprite: {fileID: 0}
-  collisionSound: {fileID: 8300000, guid: 568f02317876cdc42a0d928a4f2e93ed, type: 3}
-  knockSound: {fileID: 8300000, guid: e1c4d638a6e662d4a96d295aa002efee, type: 3}
-  boomerang: {fileID: 5789865896035401674, guid: f1421ebbd6b86be4d930d631a8289d2e, type: 3}
-  minTime: 8
-  maxTime: 12
 --- !u!82 &7251717505821529309
 AudioSource:
   m_ObjectHideFlags: 0
@@ -290,3 +262,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &5804313290817953255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7251717505821529306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e351be527621cb4fa9678648fd01d07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 100
+  minHeight: -2
+  maxHeight: 2
+  speed: 2
+  attackDamage: 10
+  attackRange: 2
+  attackRate: 1
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  thumbnailSprite: {fileID: 21300000, guid: 1342ea7a4e1aee844af958324a3c8f83, type: 3}
+  collisionSound: {fileID: 8300000, guid: 568f02317876cdc42a0d928a4f2e93ed, type: 3}
+  knockSound: {fileID: 8300000, guid: e1c4d638a6e662d4a96d295aa002efee, type: 3}
+  boomerang: {fileID: 5789865896035401674, guid: f1421ebbd6b86be4d930d631a8289d2e, type: 3}
+  minTime: 8
+  maxTime: 12

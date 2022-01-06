@@ -19,6 +19,8 @@ public class Player : MonoBehaviour
     public LayerMask targetLayerMask; // Layer of player
     float attackCooldown = 0f;
 
+    int statType;
+
     private int currentHealth;
     private float currentSpeed;
     private Rigidbody rb;
@@ -50,6 +52,7 @@ public class Player : MonoBehaviour
         this.initPlayerStats();
         currentHealth = maxHealth;
         audioS = GetComponent<AudioSource>();
+        statType = FindObjectOfType<GameManager>().getType;
     }
 
     // Update is called once per frame
@@ -253,7 +256,7 @@ public class Player : MonoBehaviour
 
     private void initPlayerStats(){
         PlayerStatsManager statsManager = new PlayerStatsManager(2);
-        PlayerStats stats = statsManager.playerStatsAtLevel(1);
+        PlayerStats stats = statsManager.playerStatsAtLevel(FindObjectOfType<GameManager>().defaultLevel);
         this.maxHealth = stats.maxHealth;
         this.currentSpeed = stats.speed;
         this.maxSpeed = stats.maxSpeed;

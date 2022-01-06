@@ -5,44 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class Boss : EnemyController
 {
-    public GameObject boomerang;
-    public float minTime, maxTime;
     private MusicController music;
 
     void Awake() {
-        Invoke("ThrowBoomerang", Random.Range(minTime, maxTime));
         music = FindObjectOfType<MusicController>();
         music.PlaySong(music.bossSong);
-    }
-
-    void ThrowBoomerang()
-    {
-        animator.SetTrigger("Boomerang");
-        GameObject tempBoomerang = Instantiate(boomerang, transform.position, transform.rotation);
-        if(isFlipped)
-        {
-            tempBoomerang.GetComponent<Boomerang>().direction = 1;
-        }
-        else
-        {
-            tempBoomerang.GetComponent<Boomerang>().direction = -1;
-        }
-        Invoke("ThrowBoomerang", Random.Range(minTime, maxTime));
     }
 
     void BossDefeated()
     {
         music.PlaySong(music.levelClearSong);
         FindObjectOfType<UIManager>().UpdateDisplayMessage("Level clear");
+        PlayerPrefs.SetInt("level", ++FindObjectOfType<GameManager>().defaultLevel);
         Invoke("LoadScene", 6f);
     }
 
     void LoadScene()
     {
-        SceneManager.LoadScene("Menu");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     public override void randomEnemyType(){
-        this.setStats(EnemyStatsManager.Instance.bossStatsAtLevel(1));
+        this.setStats(EnemyStatsManager.Instance.bossStatsAtLevel(FindObjectOfType<GameManager>().defaultLevel));
     }
 }

@@ -193,16 +193,16 @@ public class EnemyController : MonoBehaviour
         int type = Random.Range(1, 6);
         switch(type){
             case 2:
-                this.setStats(EnemyStatsManager.Instance.HighDamageEnemyStatsAtLevel(1));
+                this.setStats(EnemyStatsManager.Instance.HighDamageEnemyStatsAtLevel(FindObjectOfType<GameManager>().defaultLevel));
                 break;
             case 3:
-                this.setStats(EnemyStatsManager.Instance.HighHealthEnemyStatsAtLevel(1));
+                this.setStats(EnemyStatsManager.Instance.HighHealthEnemyStatsAtLevel(FindObjectOfType<GameManager>().defaultLevel));
                 break;
             case 4:
-                this.setStats(EnemyStatsManager.Instance.HighMobilityEnemyStatsAtLevel(1));
+                this.setStats(EnemyStatsManager.Instance.HighMobilityEnemyStatsAtLevel(FindObjectOfType<GameManager>().defaultLevel));
                 break;
             default:
-                this.setStats(EnemyStatsManager.Instance.enemyStatsAtLevel(1));
+                this.setStats(EnemyStatsManager.Instance.enemyStatsAtLevel(FindObjectOfType<GameManager>().defaultLevel));
                 break;
         }
     }

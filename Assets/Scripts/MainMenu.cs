@@ -12,7 +12,7 @@ public class MainMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -24,18 +24,37 @@ public class MainMenu : MonoBehaviour
     public void ShowMap()
     {
         maps.SetActive(true);
-        modes.SetActive(true);
         optionsMenu.SetActive(false);
+    }
+
+    public void setBalance()
+    {
+        FindObjectOfType<GameManager>().getType = 1;
+        modes.SetActive(false);
+    }
+
+    public void setAggressive()
+    {
+        FindObjectOfType<GameManager>().getType = 2;
+        modes.SetActive(false);
+    }
+
+    public void setEndurance()
+    {
+        FindObjectOfType<GameManager>().getType = 3;
+        modes.SetActive(false);
     }
 
     public void ShowSpaceLevels()
     {
+        modes.SetActive(true);
         spaceLevels.SetActive(true);
         space = true;
     }
 
     public void ShowStreetLevels()
     {
+        modes.SetActive(true);
         streetLevels.SetActive(true);
         street = true;
     }
@@ -43,6 +62,7 @@ public class MainMenu : MonoBehaviour
     public void PlayGame(string sceneName)
     {
         SceneManager.LoadScene(sceneName);
+        PlayerPrefs.SetInt("playerStat", FindObjectOfType<GameManager>().getType);
     }
 
     public void ShowOptionMenu()

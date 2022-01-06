@@ -1460,6 +1460,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 4
+  defaultLevel: 0
 --- !u!4 &1352372192
 Transform:
   m_ObjectHideFlags: 0
@@ -1795,7 +1796,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickedSong: {fileID: 8300000, guid: cd6c15af0d1f5e04295b536f6a657ccd, type: 3}
-  bossSong: {fileID: 0}
+  bossSong: {fileID: 8300000, guid: ab8717cebc339a84185537b96f95ee29, type: 3}
   levelClearSong: {fileID: 8300000, guid: 1ec26ed67aae1444c8b6b0f2136ccae8, type: 3}
 --- !u!82 &1556696655
 AudioSource:
