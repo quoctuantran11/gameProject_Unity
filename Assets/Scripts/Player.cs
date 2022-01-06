@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public float attackRange = 4f;
     public float attackRate = 1f;
     public AudioClip collisionSound, pushSound, jumpSound;
+    public GameObject hitEffectPrefab;
 
     public LayerMask targetLayerMask; // Layer of player
     float attackCooldown = 0f;
@@ -157,6 +158,7 @@ public class Player : MonoBehaviour
         if (!isDead)
         {
             currentHealth -= damage;
+            ShowHitEffect();
             anim.SetTrigger("Hurt");
             FindObjectOfType<UIManager>().UpdateHealth(currentHealth * 100 / maxHealth);
             PlaySong(collisionSound);
@@ -176,6 +178,12 @@ public class Player : MonoBehaviour
                 }
             }
         }
+    }
+
+    void ShowHitEffect()
+    {
+        GameObject sparkObj = Instantiate(hitEffectPrefab);
+        sparkObj.transform.position = transform.position + new Vector3(0.3f, 1.2f, 0);
     }
 
     public void GetKnock(int damage)
