@@ -162,6 +162,7 @@ MonoBehaviour:
   thumbnailSprite: {fileID: 21300000, guid: ae5cd0e4f67d326448f276196cb01e8c, type: 3}
   collisionSound: {fileID: 8300000, guid: 568f02317876cdc42a0d928a4f2e93ed, type: 3}
   knockSound: {fileID: 8300000, guid: f6685555fac81e3489d3559b6e22518e, type: 3}
+  hitEffectPrefab: {fileID: 6650861447939154662, guid: 8fd0797805e905647a07b4fc7911d2de, type: 3}
 --- !u!82 &8670721700846683518
 AudioSource:
   m_ObjectHideFlags: 0

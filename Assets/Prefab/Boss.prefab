@@ -257,6 +257,7 @@ MonoBehaviour:
   thumbnailSprite: {fileID: 21300000, guid: 8f6c4a05eeaff7b4eb287089c14bd3e3, type: 3}
   collisionSound: {fileID: 8300000, guid: abbe01a50746a4646bb97ac9966ccd16, type: 3}
   knockSound: {fileID: 8300000, guid: 07bca02f9354c5340ac615518af93568, type: 3}
+  hitEffectPrefab: {fileID: 6650861447939154662, guid: 8fd0797805e905647a07b4fc7911d2de, type: 3}
   boomerang: {fileID: 5789865896035401674, guid: f1421ebbd6b86be4d930d631a8289d2e, type: 3}
   minTime: 0
   maxTime: 0

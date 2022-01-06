@@ -16,6 +16,7 @@ public class EnemyController : MonoBehaviour
     public LayerMask targetLayerMask; // Layer of player
     public Sprite thumbnailSprite;
     public AudioClip collisionSound, knockSound;
+    public GameObject hitEffectPrefab;
 
     Transform player;
     protected Animator animator;
@@ -172,7 +173,9 @@ public class EnemyController : MonoBehaviour
     {
         currentHealth -= damage;
 
+        ShowHitEffect();
         animator.SetTrigger("Get Hurt");
+
         PlaySong(collisionSound);
 
         UIManager.instance.UpdateEnemyUI(maxHealth, currentHealth, thumbnailSprite);
@@ -180,6 +183,12 @@ public class EnemyController : MonoBehaviour
         {
             Die();
         }
+    }
+
+    void ShowHitEffect()
+    {
+        GameObject sparkObj = Instantiate(hitEffectPrefab);
+        sparkObj.transform.position = transform.position + new Vector3(0.3f,1.2f,0);
     }
 
     void Die()
