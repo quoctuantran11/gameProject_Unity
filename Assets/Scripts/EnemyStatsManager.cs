@@ -23,7 +23,7 @@ public class EnemyStatsManager
     private int baseSpeed = 2;
     private int speedIncrease = 1;
     private int baseAttackDamage = 10;
-    private int attackDamageIncrease = 1;
+    private int attackDamageIncrease = 3;
     private int baseAttackRate = 1;
     private int attackRateIncrease = 1;
     private int mobilityUpgradePeriod = 3;
