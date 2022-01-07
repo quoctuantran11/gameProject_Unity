@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using Pathfinding;
 
 public class EnemyController : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class EnemyController : MonoBehaviour
     public LayerMask targetLayerMask; // Layer of player
     public Sprite thumbnailSprite;
     public AudioClip collisionSound, knockSound;
+    public GameObject hitEffectPrefab;
 
     Transform player;
     protected Animator animator;
@@ -38,6 +40,11 @@ public class EnemyController : MonoBehaviour
         }
     }
 
+    Path path;
+    int currentWaypoint = 0;
+    bool reachedTarget = false;
+    Seeker seeker;
+
     void Start()
     {
         this.attackCooldown = 0f;
@@ -50,55 +57,83 @@ public class EnemyController : MonoBehaviour
         groundCheck = gameObject.transform.Find("GroundCheck");
         audioS = GetComponent<AudioSource>();
         randomEnemyType();
+
+        seeker = GetComponent<Seeker>();
+        InvokeRepeating("UpdatePath", 0f, 0.5f);
+    }
+
+    void OnPathComplete(Path p) // reset waypoint
+    {
+        if (!p.error)
+        {
+            path = p;
+            currentWaypoint = 0;
+        }
+    }
+
+    private void UpdatePath()
+    {
+        if (seeker.IsDone())
+            seeker.StartPath(rb.position, player.position, OnPathComplete);
     }
 
     void Update()
     {
         FacePlayer();
         walkTimer += Time.deltaTime;
-
-        if (Vector3.Distance(player.position, rb.position) <= attackRange && Time.time >= attackCooldown)
-        {
-            if (FindObjectOfType<Player>().health > 0){
-                rb.velocity = Vector3.zero;
-                animator.SetTrigger("Attack"); // Attack() is called in attack animation
-                attackCooldown = Time.time + (float)(6.0f / (attackRate * 1.0f)) - 0.5f;
-            }
-        }
     }
 
     private void FixedUpdate()
     {
         if(currentHealth > 0)
         {
-            // Not a very good pathfinding script, can improve using A*
+            #region New pathfinding
 
-            Vector3 targetDistance = player.position - transform.position; // locate player
-            if (targetDistance.magnitude > attackRange)
+            if (path == null)
+                return;
+            if (currentWaypoint >= path.vectorPath.Count)
             {
-                float hForce = targetDistance.x / Mathf.Abs(targetDistance.x);
-
-                if (walkTimer >= Random.Range(1f, 2f))
+                reachedTarget = true;
+                if (Time.time >= attackCooldown && FindObjectOfType<Player>().health > 0)
                 {
-                    zforce = Random.Range(-1, 2);
-                    walkTimer = 0;
+                    animator.SetTrigger("Attack"); // Attack() is called in attack animation
+                    attackCooldown = Time.time + (float)(6.0f / (attackRate * 1.0f)) - 0.5f;
                 }
-                if (Mathf.Abs(targetDistance.x) < 1.5f)
-                {
-                    hForce = 0;
-                }
-                rb.velocity = new Vector3(hForce * speed, 0, zforce * speed); // move toward player
-                animator.SetFloat("Speed", Mathf.Abs(speed));
+                return;
             }
-            else animator.SetFloat("Speed", 0f);
+            else
+            {
+                reachedTarget = false;
+            }
 
-            float minWidth = Camera.main.ScreenToWorldPoint(new Vector3(0,0,10)).x;
+            MoveTowardPlayer();
+
+            #endregion
+
+
+            float minWidth = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 10)).x;
             float maxWidth = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, 0, 10)).x;
             rb.position = new Vector3(Mathf.Clamp(rb.position.x, minWidth + 1, maxWidth - 1),
                 rb.position.y,
                 Mathf.Clamp(rb.position.z, minHeight, maxHeight));
         }
     }
+
+    private void MoveTowardPlayer()
+    {
+        Vector3 direction = ((Vector3)path.vectorPath[currentWaypoint] - rb.position).normalized;
+        Vector3 force = direction * speed * Time.deltaTime * 50;
+        rb.AddForce(force);
+        animator.SetFloat("Speed", speed);
+
+        float distance = Vector3.Distance(rb.position, path.vectorPath[currentWaypoint]);
+
+        if (distance < attackRange)
+        {
+            currentWaypoint++;
+        }
+    }
+
 
     public void FacePlayer()
     {
@@ -117,9 +152,9 @@ public class EnemyController : MonoBehaviour
             }
         }
         if (isFlipped)
-            sprite.flipX = true;
+            transform.localScale = new Vector3(-1, 1, 1);
         else
-            sprite.flipX = false;
+            transform.localScale = new Vector3(1,1, 1);
     }
 
     public void Attack()
@@ -138,7 +173,9 @@ public class EnemyController : MonoBehaviour
     {
         currentHealth -= damage;
 
+        ShowHitEffect();
         animator.SetTrigger("Get Hurt");
+
         PlaySong(collisionSound);
 
         UIManager.instance.UpdateEnemyUI(maxHealth, currentHealth, thumbnailSprite);
@@ -146,6 +183,12 @@ public class EnemyController : MonoBehaviour
         {
             Die();
         }
+    }
+
+    void ShowHitEffect()
+    {
+        GameObject sparkObj = Instantiate(hitEffectPrefab);
+        sparkObj.transform.position = transform.position + new Vector3(0.3f,1.2f,0);
     }
 
     void Die()

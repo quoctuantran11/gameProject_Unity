@@ -19,11 +19,11 @@ public class EnemyStatsManager
     }
 
     private int baseHealth = 100;
-    private int healthIncrease = 20;
+    private int healthIncrease = 30;
     private int baseSpeed = 2;
     private int speedIncrease = 1;
     private int baseAttackDamage = 10;
-    private int attackDamageIncrease = 1;
+    private int attackDamageIncrease = 3;
     private int baseAttackRate = 1;
     private int attackRateIncrease = 1;
     private int mobilityUpgradePeriod = 3;
@@ -44,25 +44,25 @@ public class EnemyStatsManager
 
     public EnemyStats HighDamageEnemyStatsAtLevel(int level){
         EnemyStats baseEnemyStats = this.enemyStatsAtLevel(level);
-        return new EnemyStats(baseEnemyStats.maxHealth - 30, baseEnemyStats.speed, baseEnemyStats.attackDamage + 4, baseEnemyStats.attackRate + 1);
+        return new EnemyStats(baseEnemyStats.maxHealth - 30, baseEnemyStats.speed, baseEnemyStats.attackDamage + 3 * level, baseEnemyStats.attackRate + 1);
     }
 
     public EnemyStats HighHealthEnemyStatsAtLevel(int level){
         EnemyStats baseEnemyStats = this.enemyStatsAtLevel(level);
-        return new EnemyStats(baseEnemyStats.maxHealth + 50, baseEnemyStats.speed - 1, baseEnemyStats.attackDamage - 2, baseEnemyStats.attackRate);
+        return new EnemyStats(baseEnemyStats.maxHealth + 35 * level, baseEnemyStats.speed - 1, baseEnemyStats.attackDamage - 2, baseEnemyStats.attackRate);
     }
 
     public EnemyStats HighMobilityEnemyStatsAtLevel(int level){
         EnemyStats baseEnemyStats = this.enemyStatsAtLevel(level);
-        return new EnemyStats(baseEnemyStats.maxHealth - 40, baseEnemyStats.speed + 2, baseEnemyStats.attackDamage - 3, baseEnemyStats.attackRate + 1);
+        return new EnemyStats(baseEnemyStats.maxHealth - 40, baseEnemyStats.speed + 2, baseEnemyStats.attackDamage - 3, baseEnemyStats.attackRate + (level / 2));
     }
 
     public EnemyStats bossStatsAtLevel(int level){
         EnemyStats baseEnemyStats = this.enemyStatsAtLevel(level);
-        int health = baseEnemyStats.maxHealth * 2;
+        int health = baseEnemyStats.maxHealth * 2 + 50 * level;
         int damage = baseEnemyStats.attackDamage + 5 * level;
-        int attackRate = 1;
-        int speed = 1;
+        int attackRate = 2;
+        int speed = 2;
         return new EnemyStats(health, speed, damage, attackRate);
     }
 

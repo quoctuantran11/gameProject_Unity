@@ -44,7 +44,8 @@ GameObject:
   - component: {fileID: 7251717505821529307}
   - component: {fileID: 7251717505821529308}
   - component: {fileID: 7251717505821529309}
-  - component: {fileID: 5804313290817953255}
+  - component: {fileID: 8539374855297292178}
+  - component: {fileID: -5214937225012886784}
   m_Layer: 7
   m_Name: Boss2
   m_TagString: Untagged
@@ -159,9 +160,9 @@ Rigidbody:
   m_GameObject: {fileID: 7251717505821529306}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
+  m_Drag: 1.5
   m_AngularDrag: 0.05
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 112
@@ -262,7 +263,35 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &5804313290817953255
+--- !u!114 &8539374855297292178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7251717505821529306}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373b52eb9bf8c40f785bb6947a1aee66, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  drawGizmos: 1
+  detailedGizmos: 0
+  startEndModifier:
+    addPoints: 0
+    exactStartPoint: 3
+    exactEndPoint: 3
+    useRaycasting: 0
+    mask:
+      serializedVersion: 2
+      m_Bits: 4294967295
+    useGraphRaycasting: 0
+  traversableTags: -1
+  tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
+  graphMask:
+    value: -1
+--- !u!114 &-5214937225012886784
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -275,8 +304,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  minHeight: -2
-  maxHeight: 2
+  minHeight: 0
+  maxHeight: 0
   speed: 2
   attackDamage: 10
   attackRange: 2
@@ -287,6 +316,7 @@ MonoBehaviour:
   thumbnailSprite: {fileID: 21300000, guid: 1342ea7a4e1aee844af958324a3c8f83, type: 3}
   collisionSound: {fileID: 8300000, guid: 568f02317876cdc42a0d928a4f2e93ed, type: 3}
   knockSound: {fileID: 8300000, guid: e1c4d638a6e662d4a96d295aa002efee, type: 3}
+  hitEffectPrefab: {fileID: 0}
   boomerang: {fileID: 5789865896035401674, guid: f1421ebbd6b86be4d930d631a8289d2e, type: 3}
   minTime: 8
   maxTime: 12

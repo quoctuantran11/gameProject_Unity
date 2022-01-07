@@ -15,6 +15,7 @@ public class Player : MonoBehaviour
     public float attackRange = 4f;
     public float attackRate = 1f;
     public AudioClip collisionSound, pushSound, jumpSound;
+    public GameObject hitEffectPrefab;
 
     public LayerMask targetLayerMask; // Layer of player
     float attackCooldown = 0f;
@@ -23,6 +24,7 @@ public class Player : MonoBehaviour
 
     private int currentHealth;
     private float currentSpeed;
+    private float normalSpeed;
     private Rigidbody rb;
     private Animator anim;
     private Transform groundCheck;
@@ -48,7 +50,6 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         groundCheck = gameObject.transform.Find("GroundCheck");
-        // currentSpeed = 3;
         this.initPlayerStats();
         currentHealth = maxHealth;
         audioS = GetComponent<AudioSource>();
@@ -70,7 +71,9 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.J))
         {
-            anim.SetTrigger("Attack");
+            if (Time.time > this.attackCooldown){
+                anim.SetTrigger("Attack");
+            }
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
@@ -101,6 +104,7 @@ public class Player : MonoBehaviour
 
             if (onGround)
             {
+                Debug.Log(this.currentSpeed + ", " + this.normalSpeed + ", " + Mathf.Abs(rb.velocity.magnitude));
                 anim.SetFloat("Speed", Mathf.Abs(rb.velocity.magnitude));
             }
 
@@ -126,7 +130,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                currentSpeed = 3;
+                currentSpeed = normalSpeed;
             }
 
             float minWidth = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 10)).x;
@@ -160,6 +164,7 @@ public class Player : MonoBehaviour
         if (!isDead)
         {
             currentHealth -= damage;
+            ShowHitEffect();
             anim.SetTrigger("Hurt");
             FindObjectOfType<UIManager>().UpdateHealth(currentHealth * 100 / maxHealth);
             PlaySong(collisionSound);
@@ -167,7 +172,7 @@ public class Player : MonoBehaviour
             if (currentHealth <= 0)
             {
                 isDead = true;
-                anim.SetTrigger("Knockout");
+                anim.SetTrigger("Dead");
                 FindObjectOfType<GameManager>().lives--;
                 if (facingRight)
                 {
@@ -179,6 +184,12 @@ public class Player : MonoBehaviour
                 }
             }
         }
+    }
+
+    void ShowHitEffect()
+    {
+        GameObject sparkObj = Instantiate(hitEffectPrefab);
+        sparkObj.transform.position = transform.position + new Vector3(0.3f, 1.2f, 0);
     }
 
     public void GetKnock(int damage)
@@ -233,13 +244,14 @@ public class Player : MonoBehaviour
     {
         if (FindObjectOfType<GameManager>().lives > 0)
         {
-            isDead = false;
+            
             FindObjectOfType<UIManager>().UpdateLives();
             currentHealth = maxHealth;
             FindObjectOfType<UIManager>().UpdateHealth(currentHealth * 100 / maxHealth);
             anim.Rebind();
             float minWidth = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 10)).x;
             transform.position = new Vector3(minWidth, 10, -4);
+            isDead = false;
         }
         else
         {
@@ -258,7 +270,7 @@ public class Player : MonoBehaviour
         PlayerStatsManager statsManager = new PlayerStatsManager(2);
         PlayerStats stats = statsManager.playerStatsAtLevel(FindObjectOfType<GameManager>().defaultLevel);
         this.maxHealth = stats.maxHealth;
-        this.currentSpeed = stats.speed;
+        this.normalSpeed = stats.speed;
         this.maxSpeed = stats.maxSpeed;
         this.attackDamage = stats.attackDamage;
         this.attackRate = stats.attackRate;

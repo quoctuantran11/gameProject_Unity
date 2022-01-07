@@ -236,6 +236,7 @@ MonoBehaviour:
   collisionSound: {fileID: 8300000, guid: 568f02317876cdc42a0d928a4f2e93ed, type: 3}
   pushSound: {fileID: 0}
   jumpSound: {fileID: 8300000, guid: cce2b0db1275edb4e91a6dd2770e310c, type: 3}
+  hitEffectPrefab: {fileID: 6650861447939154662, guid: 8fd0797805e905647a07b4fc7911d2de, type: 3}
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 0
