@@ -169,7 +169,7 @@ public class Player : MonoBehaviour
             if (currentHealth <= 0)
             {
                 isDead = true;
-                anim.SetTrigger("Knockout");
+                anim.SetTrigger("Dead");
                 FindObjectOfType<GameManager>().lives--;
                 if (facingRight)
                 {
@@ -241,13 +241,14 @@ public class Player : MonoBehaviour
     {
         if (FindObjectOfType<GameManager>().lives > 0)
         {
-            isDead = false;
+            
             FindObjectOfType<UIManager>().UpdateLives();
             currentHealth = maxHealth;
             FindObjectOfType<UIManager>().UpdateHealth(currentHealth * 100 / maxHealth);
             anim.Rebind();
             float minWidth = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 10)).x;
             transform.position = new Vector3(minWidth, 10, -4);
+            isDead = false;
         }
         else
         {
