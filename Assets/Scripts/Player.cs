@@ -22,6 +22,7 @@ public class Player : MonoBehaviour
 
     private int currentHealth;
     private float currentSpeed;
+    private float normalSpeed;
     private Rigidbody rb;
     private Animator anim;
     private Transform groundCheck;
@@ -47,7 +48,6 @@ public class Player : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         anim = GetComponent<Animator>();
         groundCheck = gameObject.transform.Find("GroundCheck");
-        // currentSpeed = 3;
         this.initPlayerStats();
         currentHealth = maxHealth;
         audioS = GetComponent<AudioSource>();
@@ -99,7 +99,7 @@ public class Player : MonoBehaviour
 
             if (onGround)
             {
-                anim.SetFloat("Speed", Mathf.Abs(rb.velocity.magnitude));
+                    anim.SetFloat("Speed", Mathf.Abs(rb.velocity.magnitude));
             }
 
             if (h > 0 && !facingRight)
@@ -124,7 +124,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                currentSpeed = 3;
+                currentSpeed = normalSpeed;
             }
 
             float minWidth = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, 10)).x;
@@ -263,7 +263,7 @@ public class Player : MonoBehaviour
         PlayerStatsManager statsManager = new PlayerStatsManager(2);
         PlayerStats stats = statsManager.playerStatsAtLevel(1);
         this.maxHealth = stats.maxHealth;
-        this.currentSpeed = stats.speed;
+        this.normalSpeed = stats.speed;
         this.maxSpeed = stats.maxSpeed;
         this.attackDamage = stats.attackDamage;
         this.attackRate = stats.attackRate;
