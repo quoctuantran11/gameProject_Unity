@@ -75,7 +75,7 @@ public class PlayerStatsManager
     public PlayerStats playerStatsAtLevel(int level){
         level = level - 1;
         int health = this.baseHealth + level * healthIncrease;
-        int speed = this.baseSpeed + (level / speedUpgradePeriod) * this.speedIncrease;
+        int speed = this.baseSpeed;
         int maxSpeed = this.baseMaxSpeed + (level / speedUpgradePeriod) * this.speedIncrease;
         int damage = this.baseAttackDamage + this.attackDamageIncrease * level;
         float rate = this.baseAttackRate + this.attackRateIncrease * level;

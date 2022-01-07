@@ -99,7 +99,8 @@ public class Player : MonoBehaviour
 
             if (onGround)
             {
-                    anim.SetFloat("Speed", Mathf.Abs(rb.velocity.magnitude));
+                Debug.Log(this.currentSpeed + ", " + this.normalSpeed + ", " + Mathf.Abs(rb.velocity.magnitude));
+                anim.SetFloat("Speed", Mathf.Abs(rb.velocity.magnitude));
             }
 
             if (h > 0 && !facingRight)
@@ -261,7 +262,7 @@ public class Player : MonoBehaviour
 
     private void initPlayerStats(){
         PlayerStatsManager statsManager = new PlayerStatsManager(2);
-        PlayerStats stats = statsManager.playerStatsAtLevel(1);
+        PlayerStats stats = statsManager.playerStatsAtLevel(15);
         this.maxHealth = stats.maxHealth;
         this.normalSpeed = stats.speed;
         this.maxSpeed = stats.maxSpeed;
