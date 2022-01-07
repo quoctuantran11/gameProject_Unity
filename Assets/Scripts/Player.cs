@@ -68,7 +68,9 @@ public class Player : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.J))
         {
-            anim.SetTrigger("Attack");
+            if (Time.time > this.attackCooldown){
+                anim.SetTrigger("Attack");
+            }
         }
         if (Input.GetKeyDown(KeyCode.Z))
         {
@@ -261,8 +263,8 @@ public class Player : MonoBehaviour
     }
 
     private void initPlayerStats(){
-        PlayerStatsManager statsManager = new PlayerStatsManager(2);
-        PlayerStats stats = statsManager.playerStatsAtLevel(15);
+        PlayerStatsManager statsManager = new PlayerStatsManager(3);
+        PlayerStats stats = statsManager.playerStatsAtLevel(5);
         this.maxHealth = stats.maxHealth;
         this.normalSpeed = stats.speed;
         this.maxSpeed = stats.maxSpeed;

@@ -42,7 +42,7 @@ public class PlayerStatsManager
         this.baseAttackDamage = 15;
         this.attackDamageIncrease = 4;
         this.baseAttackRate = 1f;
-        this.attackRateIncrease = 0.1f;
+        this.attackRateIncrease = 0.15f;
         this.speedUpgradePeriod = 3;
     }
 
@@ -65,10 +65,10 @@ public class PlayerStatsManager
         this.baseSpeed = 2;
         this.baseMaxSpeed = 4;
         this.speedIncrease = 1;
-        this.baseAttackDamage = 15;
+        this.baseAttackDamage = 17;
         this.attackDamageIncrease = 4;
-        this.baseAttackRate = 1f;
-        this.attackRateIncrease = 0.1f;
+        this.baseAttackRate = 0.75f;
+        this.attackRateIncrease = 0.05f;
         this.speedUpgradePeriod = 3;
     }
 

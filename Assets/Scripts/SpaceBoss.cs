@@ -24,6 +24,6 @@ public class SpaceBoss : EnemyController
     }
 
     public override void randomEnemyType(){
-        this.setStats(EnemyStatsManager.Instance.bossStatsAtLevel(1));
+        this.setStats(EnemyStatsManager.Instance.bossStatsAtLevel(5));
     }
 }
