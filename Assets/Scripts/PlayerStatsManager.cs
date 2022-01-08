@@ -51,7 +51,7 @@ public class PlayerStatsManager
 
     private void initAggressiveStats(){
         this.baseHealth = 100;
-        this.healthIncrease = 25;
+        this.healthIncrease = 15;
         this.baseSpeed = 4;
         this.baseMaxSpeed = 6;
         this.speedIncrease = 1;
@@ -65,7 +65,7 @@ public class PlayerStatsManager
     }
 
     private void initEnduranceStats(){
-        this.baseHealth = 150;
+        this.baseHealth = 140;
         this.healthIncrease = 50;
         this.baseSpeed = 2;
         this.baseMaxSpeed = 4;
