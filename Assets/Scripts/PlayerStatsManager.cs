@@ -16,7 +16,8 @@ public class PlayerStatsManager
     private float baseAttackRate;
     private float attackRateIncrease;
     private int speedUpgradePeriod;
-
+    private float defense;
+    private float lifeSteal;
 
     public PlayerStatsManager(int mode){
         this.playerMode = mode;
@@ -44,6 +45,8 @@ public class PlayerStatsManager
         this.baseAttackRate = 1f;
         this.attackRateIncrease = 0.15f;
         this.speedUpgradePeriod = 3;
+        this.defense = 0.15f;
+        this.lifeSteal = 0.1f;
     }
 
     private void initAggressiveStats(){
@@ -57,6 +60,8 @@ public class PlayerStatsManager
         this.baseAttackRate = 1.1f;
         this.attackRateIncrease = 0.2f;
         this.speedUpgradePeriod = 3;
+        this.defense = 0.05f;
+        this.lifeSteal = 0.15f;
     }
 
     private void initEnduranceStats(){
@@ -70,6 +75,8 @@ public class PlayerStatsManager
         this.baseAttackRate = 0.75f;
         this.attackRateIncrease = 0.05f;
         this.speedUpgradePeriod = 4;
+        this.defense = 0.2f;
+        this.lifeSteal = 0.05f;
     }
 
     public PlayerStats playerStatsAtLevel(int level){
@@ -80,6 +87,6 @@ public class PlayerStatsManager
         int damage = this.baseAttackDamage + this.attackDamageIncrease * level;
         float rate = this.baseAttackRate + this.attackRateIncrease * level;
 
-        return new PlayerStats(health, speed, maxSpeed, damage, rate);
+        return new PlayerStats(health, speed, maxSpeed, damage, rate, this.defense, this.lifeSteal);
     }
 }
