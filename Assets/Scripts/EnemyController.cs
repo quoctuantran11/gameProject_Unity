@@ -171,7 +171,6 @@ public class EnemyController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        Debug.Log(damage + ", " + currentHealth + ", " + maxHealth);
         currentHealth -= damage;
 
         ShowHitEffect();

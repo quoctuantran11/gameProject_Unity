@@ -225,6 +225,7 @@ public class Player : MonoBehaviour
                 enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
                 int healthRecover = (int)(attackDamage * this.lifeSteal);
                 this.currentHealth += healthRecover;
+                this.currentHealth = this.currentHealth > this.maxHealth ? this.maxHealth : this.currentHealth;
                 FindObjectOfType<UIManager>().UpdateHealth(currentHealth * 100 / maxHealth);
             }
         }
