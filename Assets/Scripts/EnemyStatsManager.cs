@@ -63,7 +63,7 @@ public class EnemyStatsManager
 
         // Special boss every 5 level
         if (level % 5 == 0){
-            return new EnemyStats(health * 2, speed + 2, damage + level * 2, attackRate);
+            return new EnemyStats(health * 2, speed + 2, damage + level * 3, attackRate);
         }
         else{
             return new EnemyStats(health, speed, damage, attackRate);
