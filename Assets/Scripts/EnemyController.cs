@@ -171,6 +171,7 @@ public class EnemyController : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        Debug.Log(damage + ", " + currentHealth + ", " + maxHealth);
         currentHealth -= damage;
 
         ShowHitEffect();
@@ -230,6 +231,7 @@ public class EnemyController : MonoBehaviour
         this.speed = enemyStats.speed;
         this.attackRate = enemyStats.attackRate;
         this.attackDamage = enemyStats.attackDamage;
+        this.currentHealth = this.maxHealth;
     }
 
     public virtual void randomEnemyType(){

@@ -34,42 +34,42 @@ public class PlayerStatsManager
     }
 
     private void initBalanceStats(){
-        this.baseHealth = 100;
-        this.healthIncrease = 30;
+        this.baseHealth = 120;
+        this.healthIncrease = 35;
         this.baseSpeed = 3;
         this.baseMaxSpeed = 5;
         this.speedIncrease = 1;
-        this.baseAttackDamage = 15;
-        this.attackDamageIncrease = 4;
+        this.baseAttackDamage = 17;
+        this.attackDamageIncrease = 7;
         this.baseAttackRate = 1f;
         this.attackRateIncrease = 0.15f;
         this.speedUpgradePeriod = 3;
     }
 
     private void initAggressiveStats(){
-        this.baseHealth = 80;
-        this.healthIncrease = 15;
+        this.baseHealth = 100;
+        this.healthIncrease = 25;
         this.baseSpeed = 4;
         this.baseMaxSpeed = 6;
         this.speedIncrease = 1;
         this.baseAttackDamage = 20;
-        this.attackDamageIncrease = 8;
+        this.attackDamageIncrease = 10;
         this.baseAttackRate = 1.1f;
         this.attackRateIncrease = 0.2f;
         this.speedUpgradePeriod = 3;
     }
 
     private void initEnduranceStats(){
-        this.baseHealth = 120;
-        this.healthIncrease = 40;
+        this.baseHealth = 150;
+        this.healthIncrease = 50;
         this.baseSpeed = 2;
         this.baseMaxSpeed = 4;
         this.speedIncrease = 1;
         this.baseAttackDamage = 17;
-        this.attackDamageIncrease = 4;
+        this.attackDamageIncrease = 8;
         this.baseAttackRate = 0.75f;
         this.attackRateIncrease = 0.05f;
-        this.speedUpgradePeriod = 3;
+        this.speedUpgradePeriod = 4;
     }
 
     public PlayerStats playerStatsAtLevel(int level){

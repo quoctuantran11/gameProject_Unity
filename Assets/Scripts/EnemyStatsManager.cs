@@ -30,16 +30,13 @@ public class EnemyStatsManager
 
 
     public EnemyStats enemyStatsAtLevel(int level){
-        if (level > 1){
-            int health = this.baseHealth + healthIncrease * level;
-            int speed = this.baseSpeed + speedIncrease * (level / mobilityUpgradePeriod);
-            int damage = this.baseAttackDamage + attackDamageIncrease * level;
-            int rate = this.baseAttackRate + attackRateIncrease * (level / mobilityUpgradePeriod);
-            return new EnemyStats(health, speed, damage, rate);
-        }
-        else{
-            return new EnemyStats();
-        }
+        level = level - 1;  // Level 1 have basic stats
+
+        int health = this.baseHealth + healthIncrease * level;
+        int speed = this.baseSpeed + speedIncrease * (level / mobilityUpgradePeriod);
+        int damage = this.baseAttackDamage + attackDamageIncrease * level;
+        int rate = this.baseAttackRate + attackRateIncrease * (level / mobilityUpgradePeriod);
+        return new EnemyStats(health, speed, damage, rate);
     }
 
     public EnemyStats HighDamageEnemyStatsAtLevel(int level){
@@ -49,21 +46,28 @@ public class EnemyStatsManager
 
     public EnemyStats HighHealthEnemyStatsAtLevel(int level){
         EnemyStats baseEnemyStats = this.enemyStatsAtLevel(level);
-        return new EnemyStats(baseEnemyStats.maxHealth + 35 * level, baseEnemyStats.speed - 1, baseEnemyStats.attackDamage - 2, baseEnemyStats.attackRate);
+        return new EnemyStats(baseEnemyStats.maxHealth + 35 * level, baseEnemyStats.speed - 1, baseEnemyStats.attackDamage + 3, baseEnemyStats.attackRate - 1);
     }
 
     public EnemyStats HighMobilityEnemyStatsAtLevel(int level){
         EnemyStats baseEnemyStats = this.enemyStatsAtLevel(level);
-        return new EnemyStats(baseEnemyStats.maxHealth - 40, baseEnemyStats.speed + 2, baseEnemyStats.attackDamage - 3, baseEnemyStats.attackRate + (level / 2));
+        return new EnemyStats(baseEnemyStats.maxHealth - 40, baseEnemyStats.speed + 1 + (level / 2), baseEnemyStats.attackDamage - 3, baseEnemyStats.attackRate + (level / 2));
     }
 
     public EnemyStats bossStatsAtLevel(int level){
         EnemyStats baseEnemyStats = this.enemyStatsAtLevel(level);
         int health = baseEnemyStats.maxHealth * 2 + 50 * level;
-        int damage = baseEnemyStats.attackDamage + 5 * level;
+        int damage = baseEnemyStats.attackDamage + 10 * level;
         int attackRate = 2;
         int speed = 2;
-        return new EnemyStats(health, speed, damage, attackRate);
+
+        // Special boss every 5 level
+        if (level % 5 == 0){
+            return new EnemyStats(health * 2, speed + 2, damage + level * 2, attackRate);
+        }
+        else{
+            return new EnemyStats(health, speed, damage, attackRate);
+        }
     }
 
 }

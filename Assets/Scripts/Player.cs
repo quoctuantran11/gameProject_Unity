@@ -41,6 +41,8 @@ public class Player : MonoBehaviour
             currentHealth = value;
         }
     }
+    private int defense = 0;
+    private int lifeSteal = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -101,7 +103,6 @@ public class Player : MonoBehaviour
 
             if (onGround)
             {
-                Debug.Log(this.currentSpeed + ", " + this.normalSpeed + ", " + Mathf.Abs(rb.velocity.magnitude));
                 anim.SetFloat("Speed", Mathf.Abs(rb.velocity.magnitude));
             }
 
@@ -264,7 +265,7 @@ public class Player : MonoBehaviour
     }
 
     private void initPlayerStats(){
-        PlayerStatsManager statsManager = new PlayerStatsManager(3);
+        PlayerStatsManager statsManager = new PlayerStatsManager(2);
         PlayerStats stats = statsManager.playerStatsAtLevel(5);
         this.maxHealth = stats.maxHealth;
         this.normalSpeed = stats.speed;
