@@ -70,12 +70,12 @@ public class PlayerStatsManager
         this.baseSpeed = 2;
         this.baseMaxSpeed = 4;
         this.speedIncrease = 1;
-        this.baseAttackDamage = 17;
-        this.attackDamageIncrease = 8;
-        this.baseAttackRate = 0.75f;
+        this.baseAttackDamage = 22;
+        this.attackDamageIncrease = 10;
+        this.baseAttackRate = 0.5f;
         this.attackRateIncrease = 0.05f;
         this.speedUpgradePeriod = 4;
-        this.defense = 0.2f;
+        this.defense = 0.25f;
         this.lifeSteal = 0.05f;
     }
 
