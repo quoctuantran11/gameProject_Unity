@@ -237,12 +237,21 @@ public class EnemyController : MonoBehaviour
         switch(type){
             case 2:
                 this.setStats(EnemyStatsManager.Instance.HighDamageEnemyStatsAtLevel(5));
+                sprite.color = new Color(0.749f, 0.1215f, 0.1215f);
+                transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(0.749f, 0.1215f, 0.1215f);
+                transform.GetChild(2).GetComponent<SpriteRenderer>().color = Color.green; 
                 break;
             case 3:
                 this.setStats(EnemyStatsManager.Instance.HighHealthEnemyStatsAtLevel(5));
+                sprite.color = new Color(0, 0.588f, 0.862f);
+                transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(0, 0.588f, 0.862f);
+                transform.GetChild(2).GetComponent<SpriteRenderer>().color = Color.magenta;
                 break;
             case 4:
                 this.setStats(EnemyStatsManager.Instance.HighMobilityEnemyStatsAtLevel(5));
+                sprite.color = new Color(0.98f, 0.84f, 0.1176f);
+                transform.GetChild(2).GetComponent<SpriteRenderer>().color = new Color(0.98f, 0.84f, 0.1176f);
+                transform.GetChild(2).GetComponent<SpriteRenderer>().color = Color.cyan;
                 break;
             default:
                 this.setStats(EnemyStatsManager.Instance.enemyStatsAtLevel(5));
