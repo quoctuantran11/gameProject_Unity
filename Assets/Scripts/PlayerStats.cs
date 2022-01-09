@@ -9,20 +9,26 @@ public class PlayerStats
     public int maxSpeed;
     public int attackDamage;
     public float attackRate;
+    public float defense = 0;
+    public float lifeSteal = 0;
 
-    public PlayerStats(int health, int speed, int maxSpeed, int attack, float rate){
+    public PlayerStats(int health, int speed, int maxSpeed, int attack, float rate, float defense, float lifeSteal){
         this.maxHealth = health;
         this.speed = speed;
         this.maxSpeed = maxSpeed;
         this.attackDamage = attack;
         this.attackRate = rate;
+        this.defense = defense;
+        this.lifeSteal = lifeSteal;
     }
 
     public PlayerStats(){
-    this.maxHealth = 100;
-    this.speed = 3;
-    this.maxSpeed = 5;
-    this.attackDamage = 10;
-    this.attackRate = 1f;
+        this.maxHealth = 100;
+        this.speed = 3;
+        this.maxSpeed = 5;
+        this.attackDamage = 10;
+        this.attackRate = 1f;
+        this.defense = 20;
+        this.lifeSteal = 10;
     }
 }

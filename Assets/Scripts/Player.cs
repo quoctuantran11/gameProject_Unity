@@ -43,6 +43,8 @@ public class Player : MonoBehaviour
             currentHealth = value;
         }
     }
+    private float defense = 0;
+    private float lifeSteal = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -104,7 +106,6 @@ public class Player : MonoBehaviour
 
             if (onGround)
             {
-                Debug.Log(this.currentSpeed + ", " + this.normalSpeed + ", " + Mathf.Abs(rb.velocity.magnitude));
                 anim.SetFloat("Speed", Mathf.Abs(rb.velocity.magnitude));
             }
 
@@ -163,6 +164,8 @@ public class Player : MonoBehaviour
     {
         if (!isDead)
         {
+            int damageReduce = (int)(damage * this.defense);
+            damage -= damageReduce;
             currentHealth -= damage;
             ShowHitEffect();
             anim.SetTrigger("Hurt");
@@ -223,6 +226,10 @@ public class Player : MonoBehaviour
             foreach (Collider enemy in colInfo)
             {
                 enemy.GetComponent<EnemyController>().TakeDamage(attackDamage);
+                int healthRecover = (int)(attackDamage * this.lifeSteal);
+                this.currentHealth += healthRecover;
+                this.currentHealth = this.currentHealth > this.maxHealth ? this.maxHealth : this.currentHealth;
+                FindObjectOfType<UIManager>().UpdateHealth(currentHealth * 100 / maxHealth);
             }
         }
 
@@ -274,5 +281,7 @@ public class Player : MonoBehaviour
         this.maxSpeed = stats.maxSpeed;
         this.attackDamage = stats.attackDamage;
         this.attackRate = stats.attackRate;
+        this.lifeSteal = stats.lifeSteal;
+        this.defense = stats.defense;
     }
 }
