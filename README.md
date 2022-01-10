@@ -8,8 +8,6 @@ This project was a means of exploring and learning the Unity engine. It was also
     <img src="./myhood.png">
 </a>
 
-## Screenshots :framed_picture:
-
 ## Credits :mag_right:
 :boy: Trần Quốc Tuấn
 :boy: Phạm Vũ Duy
