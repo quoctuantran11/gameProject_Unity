@@ -7,8 +7,3 @@ This project was a means of exploring and learning the Unity engine. It was also
 <a href="https://youtu.be/zHaPBV3B_Rc">
     <img src="./myhood.png">
 </a>
-
-## Credits :mag_right:
-:boy: Trần Quốc Tuấn
-:boy: Phạm Vũ Duy
-:boy: Mai Đăng Khánh
