@@ -4,6 +4,9 @@
 This project was a means of exploring and learning the Unity engine. It was also used for university project, not for any commercial uses.
 
 ## Gameplay demo :video_game:
+<a href="https://youtu.be/zHaPBV3B_Rc">
+    <img src="./myhood.png">
+</a>
 
 ## Screenshots :framed_picture:
 

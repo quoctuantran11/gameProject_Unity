@@ -18,13 +18,13 @@ public class Boss : EnemyController
         music.PlaySong(music.levelClearSong);
         FindObjectOfType<UIManager>().UpdateDisplayMessage("Level clear");
         PlayerPrefs.SetInt("level", ++MyGameManager.Instance.getLevel);
-        MyGameManager.Instance.getQuantity += 1;
+        MyGameManager.Instance.getQuantity += MyGameManager.Instance.getQuantity + (MyGameManager.Instance.getLevel/2);
         Invoke("LoadScene", 6f);
     }
 
     void LoadScene()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        SceneManager.LoadScene("SpaceMap");
     }
 
     public override void randomEnemyType(){
