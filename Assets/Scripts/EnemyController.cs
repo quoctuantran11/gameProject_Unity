@@ -29,7 +29,7 @@ public class EnemyController : MonoBehaviour
     float zforce;
     float walkTimer;
     float attackCooldown;
-    SpriteRenderer sprite;
+    protected SpriteRenderer sprite;
     private AudioSource audioS;
     public int health
     {
@@ -237,25 +237,25 @@ public class EnemyController : MonoBehaviour
         int type = Random.Range(1, 6);
         switch(type){
             case 2:
-                this.setStats(EnemyStatsManager.Instance.HighDamageEnemyStatsAtLevel(FindObjectOfType<GameManager>().defaultLevel));
+                this.setStats(EnemyStatsManager.Instance.HighDamageEnemyStatsAtLevel(MyGameManager.Instance.getLevel));
                 sprite.color = new Color(0.749f, 0.1215f, 0.1215f);
                 transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(0.749f, 0.1215f, 0.1215f);
                 transform.GetChild(2).GetComponent<SpriteRenderer>().color = Color.green; 
                 break;
             case 3:
-                this.setStats(EnemyStatsManager.Instance.HighHealthEnemyStatsAtLevel(FindObjectOfType<GameManager>().defaultLevel));
+                this.setStats(EnemyStatsManager.Instance.HighHealthEnemyStatsAtLevel(MyGameManager.Instance.getLevel));
                 sprite.color = new Color(0, 0.588f, 0.862f);
                 transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(0, 0.588f, 0.862f);
                 transform.GetChild(2).GetComponent<SpriteRenderer>().color = Color.magenta;
                 break;
             case 4:
-                this.setStats(EnemyStatsManager.Instance.HighMobilityEnemyStatsAtLevel(FindObjectOfType<GameManager>().defaultLevel));
+                this.setStats(EnemyStatsManager.Instance.HighMobilityEnemyStatsAtLevel(MyGameManager.Instance.getLevel));
                 sprite.color = new Color(0.98f, 0.84f, 0.1176f);
-                transform.GetChild(2).GetComponent<SpriteRenderer>().color = new Color(0.98f, 0.84f, 0.1176f);
+                transform.GetChild(1).GetComponent<SpriteRenderer>().color = new Color(0.98f, 0.84f, 0.1176f);
                 transform.GetChild(2).GetComponent<SpriteRenderer>().color = Color.cyan;
                 break;
             default:
-                this.setStats(EnemyStatsManager.Instance.enemyStatsAtLevel(FindObjectOfType<GameManager>().defaultLevel));
+                this.setStats(EnemyStatsManager.Instance.enemyStatsAtLevel(MyGameManager.Instance.getLevel));
                 break;
         }
     }

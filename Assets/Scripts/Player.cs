@@ -14,7 +14,7 @@ public class Player : MonoBehaviour
     public int attackDamage = 10;
     public float attackRange = 4f;
     public float attackRate = 1f;
-    public AudioClip collisionSound, pushSound, jumpSound;
+    public AudioClip collisionSound, pushSound, jumpSound, healthItem;
     public GameObject hitEffectPrefab;
 
     public LayerMask targetLayerMask; // Layer of player
@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
         this.initPlayerStats();
         currentHealth = maxHealth;
         audioS = GetComponent<AudioSource>();
-        statType = FindObjectOfType<GameManager>().getType;
+        statType = MyGameManager.Instance.getType;
     }
 
     // Update is called once per frame
@@ -246,7 +246,7 @@ public class Player : MonoBehaviour
     {
         PlaySong(pushSound);
     }
-
+    
     void PlayerRespawn()
     {
         if (FindObjectOfType<GameManager>().lives > 0)
@@ -274,8 +274,8 @@ public class Player : MonoBehaviour
     }
 
     private void initPlayerStats(){
-        PlayerStatsManager statsManager = new PlayerStatsManager(2);
-        PlayerStats stats = statsManager.playerStatsAtLevel(FindObjectOfType<GameManager>().defaultLevel);
+        PlayerStatsManager statsManager = new PlayerStatsManager(statType);
+        PlayerStats stats = statsManager.playerStatsAtLevel(MyGameManager.Instance.getLevel);
         this.maxHealth = stats.maxHealth;
         this.normalSpeed = stats.speed;
         this.maxSpeed = stats.maxSpeed;

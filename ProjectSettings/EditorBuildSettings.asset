@@ -15,6 +15,12 @@ EditorBuildSettings:
     path: Assets/Scenes/SpaceMap_Level 2.unity
     guid: f1df2a8045adbdd4e9eb1f566ced3a3b
   - enabled: 1
+    path: Assets/Scenes/SpaceMap_Level 5.unity
+    guid: 72aca0cda3058564c9b7a71fda76d99f
+  - enabled: 1
     path: Assets/Scenes/StreetMap.unity
     guid: 1381d2628be5a4c4e88da6c0fd2a8c41
+  - enabled: 1
+    path: Assets/Scenes/StreetMap_Level 2.unity
+    guid: 88da9c313c22b244c90b9ee6c8797457
   m_configObjects: {}

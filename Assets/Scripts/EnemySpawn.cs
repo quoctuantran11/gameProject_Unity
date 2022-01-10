@@ -9,18 +9,10 @@ public class EnemySpawn : MonoBehaviour
     public int numberOfEnemies;
     public float spawnTime;
     private int currentEnemies;
-    public int enemyCurs
-    {
-        get { return currentEnemies; }
-        set
-        {
-            currentEnemies = value;
-        }
-    }
     // Start is called before the first frame update
     void Start()
     {
-
+        numberOfEnemies = MyGameManager.Instance.getQuantity;
     }
 
     // Update is called once per frame

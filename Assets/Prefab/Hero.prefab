@@ -139,7 +139,7 @@ MonoBehaviour:
   maxSpeed: 5
   jumpForce: 300
   minHeight: -2
-  maxHeight: 3
+  maxHeight: 2
   maxHealth: 100
   playerName: 
   playerImage: {fileID: 21300000, guid: b415bad132ca30344b629071d3392464, type: 3}
@@ -149,6 +149,7 @@ MonoBehaviour:
   collisionSound: {fileID: 8300000, guid: abbe01a50746a4646bb97ac9966ccd16, type: 3}
   pushSound: {fileID: 8300000, guid: fdf49e6fcbcec724c8450ac5453f14ad, type: 3}
   jumpSound: {fileID: 0}
+  healthItem: {fileID: 8300000, guid: ff7c3fa1c59515043939a346a88c4bdb, type: 3}
   hitEffectPrefab: {fileID: 6650861447939154662, guid: 8fd0797805e905647a07b4fc7911d2de, type: 3}
   targetLayerMask:
     serializedVersion: 2

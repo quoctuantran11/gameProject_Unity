@@ -951,7 +951,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2927060275641973304
 RectTransform:
   m_ObjectHideFlags: 0
@@ -988,11 +988,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maps: {fileID: 0}
+  modes: {fileID: 0}
   spaceLevels: {fileID: 0}
   streetLevels: {fileID: 0}
   optionsMenu: {fileID: 0}
   Cam: {fileID: 0}
-  player: {fileID: 0}
-  boss: {fileID: 4528960549234368805, guid: 85744308f0803d0428301caaf5d3c99d, type: 3}
-  spawn: {fileID: 0}
-  enemy: {fileID: 0}

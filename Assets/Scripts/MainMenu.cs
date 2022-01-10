@@ -4,6 +4,8 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using TMPro;
+using System;
 
 public class MainMenu : MonoBehaviour
 {
@@ -29,19 +31,19 @@ public class MainMenu : MonoBehaviour
 
     public void setBalance()
     {
-        FindObjectOfType<GameManager>().getType = 1;
+        MyGameManager.Instance.getType = 1;
         modes.SetActive(false);
     }
 
     public void setAggressive()
     {
-        FindObjectOfType<GameManager>().getType = 2;
+        MyGameManager.Instance.getType = 2;
         modes.SetActive(false);
     }
 
     public void setEndurance()
     {
-        FindObjectOfType<GameManager>().getType = 3;
+        MyGameManager.Instance.getType = 3;
         modes.SetActive(false);
     }
 
@@ -61,8 +63,9 @@ public class MainMenu : MonoBehaviour
 
     public void PlayGame(string sceneName)
     {
+        MyGameManager.Instance.getLevel = Int32.Parse(EventSystem.current.currentSelectedGameObject.transform.GetChild(0).GetComponent<TMP_Text>().text);
         SceneManager.LoadScene(sceneName);
-        PlayerPrefs.SetInt("playerStat", FindObjectOfType<GameManager>().getType);
+        PlayerPrefs.SetInt("playerStat", MyGameManager.Instance.getType);
     }
 
     public void ShowOptionMenu()
